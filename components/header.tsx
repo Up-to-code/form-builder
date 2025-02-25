@@ -16,8 +16,8 @@ export function Header() {
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
   const navItems = [
-    { name: "github", href: "https://github.com/ahmed-el-haddad/form-builder" },
-    { name: "dev", href: "https://my-website-7.vercel.app/ " },
+    { name: "Github", href: "https://github.com/ahmed-el-haddad/form-builder" },
+    { name: "Developer", href: "https://github.com/ahmed-el-haddad" },
 
   ];
 
