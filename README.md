@@ -22,12 +22,17 @@
 
 ## 📸 Visual Gallery
 
-### 🔹 Homepage
+### 🔹 landing page
 <p align="center">
   <img src="public/md/homepage.png" alt="Homepage" width="700"/>
 </p>
 
-### 🔹 Form Dashboard
+ ### 🔹 Form Dashboard
+<p align="center">
+  <img src="public/md/dashboard_aoo.png" alt="Homepage" width="700"/>
+</p>
+
+### 🔹 Form data visualization
 <p align="center">
   <img src="public/md/dashboard.png" alt="Form Dashboard" width="700"/>
 </p>
