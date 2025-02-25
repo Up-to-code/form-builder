@@ -1,0 +1,75 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  email     String   @unique
+  name      String?
+  role      Role     @default(USER)
+  updatedAt DateTime @updatedAt
+  forms     Form[]   // No need for @relation here
+  submits   Submit[] // No need for @relation here
+}
+
+enum Role {
+  ADMIN
+  USER
+  PRIMARY
+}
+
+model Form {
+  id          String   @id @default(cuid())
+  createdAt   DateTime @default(now())
+  name        String
+  description String?
+  updatedAt   DateTime @updatedAt
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade) // Cascade only applies to single relations
+  inputs      Input[]
+  submits     Submit[]
+}
+
+model Input {
+  id           String   @id @default(cuid())
+  createdAt    DateTime @default(now())
+  name         String
+  type         InputType
+  label        String
+  required     Boolean
+  placeholder  String?
+  defaultValue String?
+  updatedAt    DateTime @updatedAt
+  formId       String
+  form         Form     @relation(fields: [formId], references: [id], onDelete: Cascade) // Ensures child inputs are deleted when parent form is deleted
+}
+
+model Submit {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  formId    String
+  userId    String
+  data      Json
+  form      Form     @relation(fields: [formId], references: [id])
+  user      User     @relation(fields: [userId], references: [id])
+  updatedAt DateTime @updatedAt
+}
+
+enum InputType {
+  TEXT
+  EMAIL
+  PASSWORD
+  NUMBER
+  CHECKBOX
+  RADIO
+  SELECT
+  TEXTAREA
+  DATE
+  // FILE
+}
