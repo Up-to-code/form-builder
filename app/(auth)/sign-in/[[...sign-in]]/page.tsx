@@ -85,6 +85,7 @@ function SignInForm({ className, signInWithEmail, clerkError, ...props }: SignIn
                 >
                   Forgot password?
                 </Link>
+                <div id="CAPTCHA" > </div>
               </div>
               <Input
                 id="password"
