@@ -207,7 +207,8 @@ const SignUp = () => {
                     onChange={handleInputChange}
                     className={`border ${validationErrors.password ? 'border-red-500' : 'border-gray-200'}`}
                   />
-                                  <div id="CAPTCHA" > </div>
+                                     {/* CAPTCHA Widget */}
+        <div id="clerk-captcha"></div>
 
                   <button
                     type="button"

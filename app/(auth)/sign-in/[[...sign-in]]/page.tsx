@@ -85,7 +85,6 @@ function SignInForm({ className, signInWithEmail, clerkError, ...props }: SignIn
                 >
                   Forgot password?
                 </Link>
-                <div id="CAPTCHA" > </div>
               </div>
               <Input
                 id="password"
@@ -96,7 +95,8 @@ function SignInForm({ className, signInWithEmail, clerkError, ...props }: SignIn
                 autoComplete="current-password"
               />
             </div>
-
+      {/* CAPTCHA Widget */}
+      <div id="clerk-captcha"></div>
             {clerkError && (
               <div className="rounded-lg bg-destructive/10 border border-destructive/30 p-4">
                 <p className="text-sm text-destructive text-center">
