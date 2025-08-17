@@ -87,6 +87,8 @@ const SignUp = () => {
       ...prev,
       [name]: ""
     }));
+    // Clear global error when user starts typing
+    if (error) setError("");
   };
 
   const signUpWithEmail = async (e: FormEvent) => {
@@ -205,11 +207,8 @@ const SignUp = () => {
                     placeholder="Password"
                     value={formData.password}
                     onChange={handleInputChange}
-                    className={`border ${validationErrors.password ? 'border-red-500' : 'border-gray-200'}`}
+                    className={`border pr-10 ${validationErrors.password ? 'border-red-500' : 'border-gray-200'}`}
                   />
-                                     {/* CAPTCHA Widget */}
-        <div id="clerk-captcha"></div>
-
                   <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
@@ -223,13 +222,16 @@ const SignUp = () => {
                 )}
                 <p className="text-xs text-gray-500">
                   Password must be at least 8 characters long and contain:
-                  <ul className="list-disc ml-4 mt-1">
-                    <li>One uppercase letter</li>
-                    <li>One lowercase letter</li>
-                    <li>One number</li>
-                  </ul>
                 </p>
+                <ul className="text-xs text-gray-500 list-disc ml-4">
+                  <li>One uppercase letter</li>
+                  <li>One lowercase letter</li>
+                  <li>One number</li>
+                </ul>
               </div>
+
+              {/* CAPTCHA Widget - Moved to proper position */}
+              <div id="clerk-captcha"></div>
 
               <Button
                 type="submit"
@@ -252,7 +254,10 @@ const SignUp = () => {
                 <Input
                   type="text"
                   value={code}
-                  onChange={(e) => setCode(e.target.value)}
+                  onChange={(e) => {
+                    setCode(e.target.value);
+                    if (error) setError("");
+                  }}
                   placeholder="Enter verification code"
                   className="border border-gray-200"
                 />
@@ -261,7 +266,7 @@ const SignUp = () => {
               <Button
                 type="submit"
                 className="w-full bg-blue-600 hover:bg-blue-700 text-white"
-                disabled={loading}
+                disabled={loading || !code.trim()}
               >
                 {loading ? (
                   <>
