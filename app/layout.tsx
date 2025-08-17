@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Cairo } from "next/font/google";
 import "./globals.css";
 import type React from "react";
 import { ClerkProvider } from "@clerk/nextjs";
-const inter = Inter({ subsets: ["latin"] });
+const cairo = Cairo({ subsets: ["latin" , "arabic"] });
 
 export const metadata: Metadata = {
   title: "Crop Studio - Protect Your Privacy, Share What Matters",
@@ -19,7 +19,7 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en">
-        <body className={`${inter.className}  antialiased`}>
+        <body className={`${cairo.className} bg-white`}>
           {children}
         </body>
       </html>
